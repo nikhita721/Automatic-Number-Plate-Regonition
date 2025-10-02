@@ -6,8 +6,8 @@ Werkzeug==2.3.7
 requests==2.31.0
 
 # Data Processing
-numpy==1.24.3
-Pillow==10.0.1
+numpy>=1.24.0
+Pillow>=10.0.0
 
 # Development
 python-dotenv==1.0.0

@@ -27,7 +27,14 @@ def check(output):
     
     response = requests.request("POST", url, data=payload, headers=headers, params=querystring)
     print(response.text) 
-    return response.json()["results"][0]["plate"],response.json()["results"][0]["confidence"]
+    try:
+        result = response.json()
+        if "results" in result and len(result["results"]) > 0:
+            return result["results"][0]["plate"], result["results"][0]["confidence"]
+        else:
+            return "No license plate detected", 0
+    except:
+        return "Error processing image", 0
     
  
 #Routing the html page
@@ -45,4 +52,4 @@ def predict():
 
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
